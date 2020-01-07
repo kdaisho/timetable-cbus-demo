@@ -1,2 +1,3 @@
-# timetable-cbus-demo
-React pet project demo
+# Timetable Cbus
+
+Pet project with React
