@@ -31746,7 +31746,7 @@ var Header = function Header(props) {
   var directions = props.directions,
       toggleDirection = props.toggleDirection;
   return _react.default.createElement("header", null, _react.default.createElement("div", {
-    className: "container"
+    className: "wrapper"
   }, _react.default.createElement("h1", {
     className: "title"
   }, "\u5317\u8C37\u753A\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30D0\u30B9"), directions.map(function (dir) {
@@ -31792,11 +31792,11 @@ var Table = function Table(props) {
       directionId = props.directionId,
       dayId = props.dayId;
   return _react.default.createElement("div", {
-    className: "container"
+    className: "wrapper is-main"
   }, _react.default.createElement("h2", {
     className: "direction-name"
   }, direction, " - ", day), _react.default.createElement("div", {
-    className: "container-table section"
+    className: "wrapper-table"
   }, _react.default.createElement("div", {
     className: "table-scroll"
   }, _react.default.createElement("table", {
@@ -32000,7 +32000,8 @@ function (_Component) {
         direction: this.state.direction,
         directionId: this.state.directionId,
         day: this.state.day,
-        dayId: this.state.dayId
+        dayId: this.state.dayId // toggleDay={this.toggleDay}
+
       }));
     }
   }]);
@@ -32037,7 +32038,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33283" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39063" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

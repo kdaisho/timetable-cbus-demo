@@ -5,10 +5,14 @@ body * {
   padding: 0;
 }
 
-.container {
+.wrapper {
   margin: 0 auto;
   max-width: 780px;
   width: 100%;
+}
+.wrapper.is-main {
+  box-sizing: border-box;
+  padding: 0 9px;
 }
 
 header {
@@ -35,43 +39,43 @@ header .title {
   font-size: 1.25rem;
 }
 
-.container-table {
+.wrapper-table {
   max-width: 100%;
-  margin-left: 1.5rem;
   position: relative;
 }
-.container-table .table-scroll {
+.wrapper-table .table-scroll {
   overflow-x: auto;
   margin-left: 139px;
 }
-.container-table .table {
+.wrapper-table .table {
   border-collapse: collapse;
 }
-.container-table .table thead tr.first-row,
-.container-table .table thead tr:nth-child(1) td.fixed {
+.wrapper-table .table thead tr.first-row,
+.wrapper-table .table thead tr:nth-child(1) td.fixed {
   background: #94af76;
   color: #fff;
   font-weight: bold;
 }
-.container-table .table tr,
-.container-table .table tr:nth-child(odd) td.fixed {
+.wrapper-table .table tr,
+.wrapper-table .table tr:nth-child(odd) td.fixed {
   background: #c5e1a5;
 }
-.container-table .table td {
+.wrapper-table .table td {
   border: 3px solid #fff;
   height: 60px;
   padding: 0 9px;
   text-align: center;
   width: 50px;
 }
-.container-table .table span {
+.wrapper-table .table span {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
 }
-.container-table .table .fixed {
+.wrapper-table .table .fixed {
+  border-width: 3px 3px 3px 0;
   left: 0;
   margin-top: -1px;
   max-width: 120px;
@@ -79,8 +83,8 @@ header .title {
   position: absolute;
   width: 100%;
 }
-.container-table .table tbody tr:nth-child(even),
-.container-table .table tbody tr:nth-child(even) .fixed {
+.wrapper-table .table tbody tr:nth-child(even),
+.wrapper-table .table tbody tr:nth-child(even) .fixed {
   background: #eaf4de;
 }
 
