@@ -31748,7 +31748,7 @@ var Header = function Header(props) {
   return _react.default.createElement("header", null, _react.default.createElement("div", {
     className: "container"
   }, _react.default.createElement("h1", {
-    className: "title is-5 has-text-white"
+    className: "title"
   }, "\u5317\u8C37\u753A\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30D0\u30B9"), directions.map(function (dir) {
     return _react.default.createElement("div", {
       className: "buttons",
@@ -31756,14 +31756,12 @@ var Header = function Header(props) {
     }, _react.default.createElement("span", {
       className: "buttons-title"
     }, dir.dirName), _react.default.createElement("button", {
-      className: "button is-light is-small",
       onClick: toggleDirection,
       "data-dirname": dir.dirName,
       "data-dirid": dir.dirId,
       "data-day": dir.weekday.name,
       "data-dayid": dir.weekday.value
     }, dir.weekday.name), _react.default.createElement("button", {
-      className: "button is-light is-small",
       onClick: toggleDirection,
       "data-dirname": dir.dirName,
       "data-dirid": dir.dirId,
@@ -31796,14 +31794,16 @@ var Table = function Table(props) {
   return _react.default.createElement("div", {
     className: "container"
   }, _react.default.createElement("h2", {
-    className: "title is-5"
+    className: "direction-name"
   }, direction, " - ", day), _react.default.createElement("div", {
     className: "container-table section"
   }, _react.default.createElement("div", {
     className: "table-scroll"
   }, _react.default.createElement("table", {
     className: "table"
-  }, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("td", {
+  }, _react.default.createElement("thead", null, _react.default.createElement("tr", {
+    class: "first-row"
+  }, _react.default.createElement("td", {
     className: "fixed"
   }, _react.default.createElement("span", null, "\u505C\u7559\u6240")), _react.default.createElement("td", {
     colSpan: "6"
@@ -32037,7 +32037,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45823" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33283" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
