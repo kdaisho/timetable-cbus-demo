@@ -5,12 +5,22 @@ body * {
   padding: 0;
 }
 
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+button:hover {
+  cursor: pointer;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 780px;
   width: 100%;
 }
-.wrapper.is-main {
+
+.main-padding {
   box-sizing: border-box;
   padding: 0 9px;
 }
@@ -34,6 +44,32 @@ header .title {
   width: 225px;
 }
 
+.week-btns {
+  display: flex;
+  margin: 24px auto -3px;
+  position: relative;
+  justify-content: flex-end;
+  width: calc(100% - 6px);
+  z-index: 30;
+}
+.week-btns .week-btn {
+  background: #94af76;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 5px solid #94af76;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bolder;
+  padding: 9px 12px;
+  width: 150px;
+}
+.week-btns .week-btn:first-child {
+  margin-right: 6px;
+}
+.week-btns .week-btn.is-blur {
+  border-bottom: 5px solid #fff;
+  opacity: 60%;
+}
+
 .direction-name {
   color: #333;
   font-size: 1.25rem;
@@ -49,6 +85,7 @@ header .title {
 }
 .wrapper-table .table {
   border-collapse: collapse;
+  width: 100%;
 }
 .wrapper-table .table thead tr.first-row,
 .wrapper-table .table thead tr:nth-child(1) td.fixed {
@@ -65,7 +102,7 @@ header .title {
   height: 60px;
   padding: 0 9px;
   text-align: center;
-  width: 50px;
+  min-width: 50px;
 }
 .wrapper-table .table span {
   position: absolute;

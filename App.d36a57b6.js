@@ -31746,28 +31746,19 @@ var Header = function Header(props) {
   var directions = props.directions,
       toggleDirection = props.toggleDirection;
   return _react.default.createElement("header", null, _react.default.createElement("div", {
-    className: "wrapper"
+    className: "wrapper main-padding"
   }, _react.default.createElement("h1", {
     className: "title"
   }, "\u5317\u8C37\u753A\u30B3\u30DF\u30E5\u30CB\u30C6\u30A3\u30D0\u30B9"), directions.map(function (dir) {
     return _react.default.createElement("div", {
       className: "buttons",
       key: dir.id
-    }, _react.default.createElement("span", {
-      className: "buttons-title"
-    }, dir.dirName), _react.default.createElement("button", {
+    }, _react.default.createElement("button", {
+      className: "buttons-title",
       onClick: toggleDirection,
       "data-dirname": dir.dirName,
-      "data-dirid": dir.dirId,
-      "data-day": dir.weekday.name,
-      "data-dayid": dir.weekday.value
-    }, dir.weekday.name), _react.default.createElement("button", {
-      onClick: toggleDirection,
-      "data-dirname": dir.dirName,
-      "data-dirid": dir.dirId,
-      "data-day": dir.weekend.name,
-      "data-dayid": dir.weekend.value
-    }, dir.weekend.name));
+      "data-dirid": dir.dirId
+    }, dir.dirName));
   })));
 };
 
@@ -31787,22 +31778,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Table = function Table(props) {
   var arrivals = props.arrivals,
-      direction = props.direction,
-      day = props.day,
       directionId = props.directionId,
       dayId = props.dayId;
+  console.log(directionId, dayId);
+  console.log(arrivals["rojin"]["weekday"]);
   return _react.default.createElement("div", {
-    className: "wrapper is-main"
-  }, _react.default.createElement("h2", {
-    className: "direction-name"
-  }, direction, " - ", day), _react.default.createElement("div", {
     className: "wrapper-table"
   }, _react.default.createElement("div", {
     className: "table-scroll"
   }, _react.default.createElement("table", {
     className: "table"
   }, _react.default.createElement("thead", null, _react.default.createElement("tr", {
-    class: "first-row"
+    className: "first-row"
   }, _react.default.createElement("td", {
     className: "fixed"
   }, _react.default.createElement("span", null, "\u505C\u7559\u6240")), _react.default.createElement("td", {
@@ -31817,10 +31804,40 @@ var Table = function Table(props) {
         key: h
       }, h);
     }));
-  }))))));
+  })))));
 };
 
 var _default = Table;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"WeekButton.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var WeekButton = function WeekButton(props) {
+  var weekBlur, weekendBlur;
+  props.day === "weekend" ? weekBlur = "is-blur" : weekendBlur = "is-blur";
+  return _react.default.createElement("div", {
+    className: "week-btns"
+  }, _react.default.createElement("button", {
+    className: "".concat(weekBlur, " week-btn"),
+    onClick: props.toggleDay,
+    "data-day": "weekday"
+  }, "\u5E73\u65E5"), _react.default.createElement("button", {
+    className: "".concat(weekendBlur, " week-btn"),
+    onClick: props.toggleDay,
+    "data-day": "weekend"
+  }, "\u571F\u4F11\u65E5"));
+};
+
+var _default = WeekButton;
 exports.default = _default;
 },{"react":"../node_modules/react/index.js"}],"../data/headerItem.json":[function(require,module,exports) {
 module.exports = {
@@ -31929,6 +31946,8 @@ var _Header = _interopRequireDefault(require("./Header"));
 
 var _Table = _interopRequireDefault(require("./Table"));
 
+var _WeekButton = _interopRequireDefault(require("./WeekButton"));
+
 var _headerItem = _interopRequireDefault(require("../data/headerItem.json"));
 
 var _schedules = _interopRequireDefault(require("../data/schedules.json"));
@@ -31980,9 +31999,16 @@ function (_Component) {
       _this.setState({
         direction: event.target.dataset.dirname,
         directionId: event.target.dataset.dirid,
-        type: event.target.dataset.type,
-        day: event.target.dataset.day,
-        dayId: event.target.dataset.dayid
+        type: event.target.dataset.type
+      });
+    };
+
+    _this.toggleDay = function (event) {
+      var day = event.target.dataset.day;
+
+      _this.setState({
+        day: _headerItem.default[day].name,
+        dayId: day
       });
     };
 
@@ -31995,14 +32021,18 @@ function (_Component) {
       return _react.default.createElement("section", null, _react.default.createElement(_Header.default, {
         directions: _headerItem.default.directions,
         toggleDirection: this.toggleDirection
+      }), _react.default.createElement("div", {
+        className: "wrapper main-padding"
+      }, _react.default.createElement("h2", {
+        className: "direction-name"
+      }, this.state.direction), _react.default.createElement(_WeekButton.default, {
+        day: this.state.dayId,
+        toggleDay: this.toggleDay
       }), _react.default.createElement(_Table.default, {
         arrivals: this.state.arrivals,
-        direction: this.state.direction,
         directionId: this.state.directionId,
-        day: this.state.day,
-        dayId: this.state.dayId // toggleDay={this.toggleDay}
-
-      }));
+        dayId: this.state.dayId
+      })));
     }
   }]);
 
@@ -32010,7 +32040,7 @@ function (_Component) {
 }(_react.Component);
 
 (0, _reactDom.render)(_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./Header":"Header.js","./Table":"Table.js","../data/headerItem.json":"../data/headerItem.json","../data/schedules.json":"../data/schedules.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./Header":"Header.js","./Table":"Table.js","./WeekButton":"WeekButton.js","../data/headerItem.json":"../data/headerItem.json","../data/schedules.json":"../data/schedules.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32038,7 +32068,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39063" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46709" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
